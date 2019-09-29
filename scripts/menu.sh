@@ -1,6 +1,5 @@
 #!/bin/bash
-#load files
-(exec "./scripts/filesMan.sh")
+
 # coloredEcho "This text is green" green
 coloredEcho(){
     local exp=$1;
