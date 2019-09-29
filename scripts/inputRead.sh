@@ -31,28 +31,25 @@ readData(){
 
 #caseMenu varName fileName color
 caseMenu(){
-	option=$1
-	file_name=$2
-	runCygwinRegFile="regFile_createRunCygwin.reg"
-	delCygwinRegFile="regFile_deleteRunCygwin.reg"
-	runCmdRegFile="regFile_createRunCmd.reg"
-	delCmdRegFile="regFile_deleteRunCmd.reg"
-	inc_value=0
+	local option=$1
+	local file_name=$2
+	local runCygwinRegFile="regFile_createRunCygwin.reg"
+	local delCygwinRegFile="regFile_deleteRunCygwin.reg"
+	local runCmdRegFile="regFile_createRunCmd.reg"
+	local delCmdRegFile="regFile_deleteRunCmd.reg"
 	while [[ "$option" != "1"  \
 	&& "$option" != "2" \
 	&& "$option" != "3" \
 	&& "$option" != "4" \
 	&& "$option" != "5" \
-	&& "$option" != "6" \
-	&& "$option" != "7" ]]
+	&& "$option" != "6" ]]
 	do
 	readData "Menu:\n'press 1' - create simple contex-menu (Run_cygwin_here);\
 	\n'press 2' - delete simple contex-menu (Run_cygwin_here);\
 	\n'press 3' - create simple contex-menu (Run_cmd_here);\
 	\n'press 4' - delete simple contex-menu (Run_cmd_here);\
 	\n'press 5' - create simple contex-menu;\
-	\n'press 6' - create complex context-menu;\
-	\n'press 7' - exit " option $3
+	\n'press 6' - exit " option $3
 	case $option in
 			"1")
 				coloredEcho "Creating '$runCygwinRegFile' file" cyan
@@ -65,11 +62,17 @@ caseMenu(){
 				runFile $delCygwinRegFile;;
 			"3")
 				coloredEcho "Creating '$runCmdRegFile' file"  cyan
-				createFile $runCmdRegFile $option;;
+				createFile $runCmdRegFile $option
+				runFile $runCmdRegFile;;
 			"4")
 				coloredEcho "Creating '$delCmdRegFile' file"  cyan
-				createFile $delCygwinRegFile $option;;
-			"7")
+				createFile $delCmdRegFile $option
+				runFile $delCmdRegFile;;
+			"5")
+				coloredEcho "Creating '$file_name' file"  cyan
+				createFile $file_name $option
+				echo "Edit the file $file_name and run it";;
+			"6")
 				coloredEcho "Bye" red
 				exit 1;;	
 			*)

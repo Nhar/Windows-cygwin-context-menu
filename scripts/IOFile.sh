@@ -2,14 +2,15 @@
 
 #createFile fileName option
 createFile(){
-file_name=$1
+local file_name=$1
 
 if [[ $2 = "1" ]]; then
 cd ..
 path1="$(cmd /c cd)"
 #remove  $'\r' 
 full_path="${path1/$'\r'/}\icons\Cygwin.ico"
-doubleBackslash "$full_path"
+#doubleBackslash
+full_path="$(doubleBackslash "$full_path")"
 cd scripts
 cat > $file_name <<EOF
 Windows Registry Editor Version 5.00
@@ -24,7 +25,27 @@ Windows Registry Editor Version 5.00
 [-HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cygwin_here]
 [-HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cygwin_here\command]
 EOF
-
+elif [[ $2 = "3" ]]; then
+cd ..
+path1="$(cmd /c cd)"
+#remove  $'\r' 
+full_path="${path1/$'\r'/}\icons\cmd.ico"
+#doubleBackslash
+full_path="$(doubleBackslash "$full_path")"
+cd scripts
+cat > $file_name <<EOF
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cmd_here]
+"Icon"="\"$full_path\""
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cmd_here\command]
+@="\"C:\\\Windows\\\System32\\\cmd.exe\""
+EOF
+elif [[ $2 = "4" ]]; then
+cat > $file_name <<EOF
+Windows Registry Editor Version 5.00
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cmd_here]
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cmd_here\command]
+EOF
 elif [[ $2 = "5" ]]; then 
 cat > $file_name <<EOF
 Windows Registry Editor Version 5.00
@@ -34,7 +55,7 @@ Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\Directory\Background\shell\MenuItem]
 "Icon"="\"C:\\\cygwin64\\\cygwin.ico\""
 
-#@= path to cygwin shell and name of script
+#@= path to cygwin shell, name of script
 #Warning - add bash script folder to path
 [HKEY_CLASSES_ROOT\Directory\Background\shell\MenuItem\command]
 @="\"C:\\\cygwin64\\\bin\\\mintty.exe\" \"nameOfScript.sh\""
@@ -42,9 +63,13 @@ EOF
 
 fi
 }
-
+#doubleBackslab path
 doubleBackslash(){
-	full_path=$(echo $1 | sed -e 's/\\/\\\\/g')
+	echo $1 | sed -e 's/\\/\\\\/g'
+}
+
+function example { args : string firstName , string lastName , integer age } {
+  echo "My name is ${firstName} ${lastName} and I am ${age} years old."
 }
 
 #runFile path
