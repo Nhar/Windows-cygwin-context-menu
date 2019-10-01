@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 #createFile fileName option
 createFile(){
@@ -58,10 +58,6 @@ Windows Registry Editor Version 5.00
 EOF
 
 fi
-}
-#doubleBackslab path
-doubleBackslash(){
-	echo $1 | sed -e 's/\\/\\\\/g'
 }
 
 #runFile path

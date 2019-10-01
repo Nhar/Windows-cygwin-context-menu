@@ -1,6 +1,6 @@
 
 ## Windows-cygwin-context-menu
-Windows-cygwin-context-menu is a programm for manipulation contex-menu items
+Windows-cygwin-context-menu is a program for manipulation contex-menu items
 
 ## Requirements:
 - cygwin shell
