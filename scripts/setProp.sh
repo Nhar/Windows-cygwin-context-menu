@@ -40,7 +40,7 @@ replaceCygwinPath(){
 	sed -i "s|.*CYGWIN_PATH.*|CYGWIN_PATH=\"$cygwinWinPath\"|" $(find . -maxdepth 1 -type f -name "properties.sh")	
 }
 replaceCmdPath(){
-	sed -i "s|.*CMD_PATH.*|CMD_PATH==\"$cmdWinPath\"|" $(find . -maxdepth 1 -type f -name "properties.sh")	
+	sed -i "s|.*CMD_PATH.*|CMD_PATH=\"$cmdWinPath\"|" $(find . -maxdepth 1 -type f -name "properties.sh")	
 }
 
 

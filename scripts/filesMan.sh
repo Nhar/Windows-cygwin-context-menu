@@ -15,7 +15,7 @@ Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cygwin_here]
 "Icon"="\"$full_path\""
 [HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cygwin_here\command]
-@="\"$CYGWIN_PATH\""
+@="\"$CYGWIN_PATH\"\"-c cd\""
 EOF
 elif [[ $2 = "2" ]]; then
 cat > $file_name <<EOF
@@ -34,7 +34,7 @@ Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cmd_here]
 "Icon"="\"$full_path\""
 [HKEY_CLASSES_ROOT\Directory\Background\shell\Run_cmd_here\command]
-@="\"CMD_PATH\""
+@="\"$CMD_PATH\""
 EOF
 elif [[ $2 = "4" ]]; then
 cat > $file_name <<EOF
@@ -49,7 +49,7 @@ Windows Registry Editor Version 5.00
 #MenuItem - name of menu item (like cut, create_File, etc.)
 #Icon - path to icon file
 [HKEY_CLASSES_ROOT\Directory\Background\shell\MenuItem]
-"Icon"="\"$CYGWIN_PATH\""
+"Icon"="\"$CYGWIN_PATH\\""
 
 #@= path to cygwin shell, name of script
 #Warning - add bash script folder to path
