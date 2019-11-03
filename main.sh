@@ -7,8 +7,8 @@ source "./scripts/setProp.sh"
 
 #main
 #set properties
-caseMenuProp option1 properties.sh green
+caseMenuProp option1 properties.sh green lightgreen
 source "properties.sh"
 
 #input data
-caseMenu option regFile.reg green
+caseMenu option regFile.reg green lightgreen
