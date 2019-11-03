@@ -3,25 +3,25 @@
 caseMenuProp(){
 	local option=$1
 	local file_name=$2
-	while [[ "$option" != "y"  \
-	&& "$option" != "n" ]]
+	while (! [[ "$option" =~ ^([yY][eE][sS]|[yY])$ || "$option" =~ ^([nN][oO]|[nN])$ ]])
 	do
-	readData "Do you want to set up properties? \n'press [y]' - set up paths for cmd and cygwin ;\
-	\n'press [n]' - go further " option $3
-	option=${option,,} # convert to lowercase
-	case $option in
-			y|yes)
-				coloredEcho "Changing..." cyan
-				searchCygwinPath
-				searchWinPath
-				replaceCygwinPath
-				replaceCmdPath
-				option=y;;
-			n|no)
-				option=n;;
-			*)
-				coloredEcho "Wrong value" red;;
-		esac
+		option=${option,,} # convert to lowercase
+		coloredEchoV2 "Do you want to set up properties?" lightgreen bold 
+		coloredEchoV2 "press [y/yes]' - set up paths for cmd and cygwin;" lightgreen  
+		readDataV2 "press [n/no]' - go further;" option lightgreen  
+		option=${option,,} # convert to lowercase
+		case $option in
+				y|yes)
+					coloredEcho "Changing..." cyan
+					searchCygwinPath
+					searchWinPath
+					replaceCygwinPath
+					replaceCmdPath;;
+				n|no)
+					;;
+				*)
+					coloredEchoV2 "Wrong value" lightred;;
+			esac
 
 	done
 }
